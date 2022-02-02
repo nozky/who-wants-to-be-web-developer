@@ -1,38 +1,255 @@
-.App {
-  text-align: center;
+:root{
+  --font-size: clamp(1.8vw, 1rem, 3vw);
+  --font-size-small: clamp(4vw, 1.5rem, 5vw);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+*, *::after, *::before{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+html,#root{
+  height: 100%;
+  color: white;
+  overflow: auto;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body{
+  height: 100%;
+}
+
+.App{
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;;
+}
+
+.options{
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  font-size: 0.8rem;
+  display: flex;
+  z-index: 1000;
+}
+
+.options:hover{
+  cursor: pointer;
+}
+
+.options span{
+  border: 1px solid white;
+  padding: 0.3rem;
+  border-radius: 10px;
+  transition: 300ms;
+}
+
+.options span:hover{
+  border: 2px solid white;
+}
+
+.bg-image{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -100;
+}
+
+.bg-image img{
+  height: 100%;
+  width: 100%;
+  object-position: top;
+  object-fit:cover;
+}
+
+.top{
+  position: relative;
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
+.top .score{
+  position: absolute;
+  background-color: black;
+  right: 100px;
+  top: 100px;
+  padding: 1rem 5rem;
+  font-size: var(--font-size);
+  border-radius: 30px;
+  border: 5px solid white;
+}
+
+.bottom{
+  flex-grow: 0;
+  padding-bottom: 5rem ;
+}
+
+.bottom .question{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  border-bottom: 5px solid white;
+  margin-bottom: 3rem;
 }
 
-.App-link {
-  color: #61dafb;
+.bottom .question p{
+  padding: 2rem 2rem;
+  background-color: black;
+  width: fit-content;
+  border-radius: 50px;
+  font-size: var(--font-size);
+  border: 5px solid white;
+  transform: translateY(50%);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.bottom .answers{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+  padding: 2rem;
+}
+
+.bottom .answers .item p{
+  padding: 1rem 4rem;
+  background-color: black;
+  border: 5px solid white;
+  border-radius: 30px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 1.5rem;
+  transition: all 250ms;
+}
+
+.bottom .answers .item p:hover{
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.411);
+}
+
+
+/* util */
+
+.bottom .answers .item p.bg-green{
+  background-color: greenyellow;
+  color: black;
+}
+
+.bottom .answers .item p.bg-red{
+  background-color: red;
+  color: black;
+}
+
+.bottom .nav{
+  text-align: center;
+}
+
+.bottom .nav button{
+  padding: 1rem 2rem;
+  font-size: 1.3rem;
+  border: none;
+  border-radius: 20px;
+}
+
+.bottom .nav button:hover{
+  cursor: pointer;
+  background-color: lightblue;
+}
+
+/* medium screen*/
+@media (max-width: 1000px) {
+  
+  .top .score{
+    right: 80px;
+    top: 100px;
+    padding: 1rem 1.5rem;
+    font-size: 1.3rem;
+    border-radius: 30px;
+    border: 5px solid white;
   }
-  to {
-    transform: rotate(360deg);
+
+  .bottom .question{
+    border: none;
+    border-top: 3px solid white;
+    margin: 0;
   }
+  
+  .bottom .question p{
+    padding: 1.4rem;
+    margin: 1rem;
+    width: fit-content;
+    border-radius: 50px;
+    border: 3px solid white;
+    transform: translateY(-50%);
+  }
+
+  .bottom .answers .item p{
+    padding: 1rem 2rem;
+    background-color: black;
+    border: 3px solid white;
+    border-radius: 30px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.3rem;
+    transition: all 250ms;
+  }
+}
+
+
+/* small screen */
+@media (max-width: 900px){
+  
+  .top .score{
+    top: 50px;
+    right: 20px;
+    padding: 0.5rem 1rem;
+    font-size: var(--font-size);
+    border-radius: 30px;
+    border: 2px solid white;
+  }
+
+  .bottom{
+    padding: 1rem;
+  }
+
+  .bottom .question{
+    border: none;
+    margin: 0;
+  }
+  
+  .bottom .question p{
+    font-size: var(--font-size-small);
+    margin: 0.5rem;
+    width: fit-content;
+    border-radius: 50px;
+    border: 3px solid white;
+    transform: translateY(0);
+  }
+
+  .bottom .answers{
+    grid-template-columns: 1fr;
+  }
+
+  .bottom .answers .item p{
+    padding: 0.5rem 1rem;
+    background-color: black;
+    border: 3px solid white;
+    border-radius: 30px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: var(--font-size-small);
+    transition: all 250ms;
+  }
+
+  .bottom .nav button{
+    padding: 0.5rem 1rem;
+    font-size: var(--font-size-small);
+    border: none;
+    outline: none;
+    border-radius: 20px;
+  }
+
 }
