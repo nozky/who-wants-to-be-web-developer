@@ -1,6 +1,7 @@
 import React, {useState, useEffect,FC} from 'react';
 import Options from './components/Options/Options'
 import './App.css';
+import bg from './assets/image/bg.jpeg'
 
 const App:FC =()=> {
 
@@ -52,7 +53,7 @@ const App:FC =()=> {
           <span>Options</span>
       </div>
       <div className="bg-image">
-        <img src="https://www.gamesload.com/images/products/Microids/background__Millionaire_.jpg" alt="background image" />
+        <img src={bg} alt="background image" />
       </div>
       <div className="top">
         { questions  && <div className="score">Score: {correctAnsCount} / {questions.length}</div>}
@@ -76,6 +77,9 @@ const App:FC =()=> {
         </div>}
       </div>
       {showOptions && <Options setShowOptions={setShowOptions} setUrl={setUrl} />}
+      <footer>
+        <p>Web Developer: Email: <a href="mailto:norvillie.villaruel@edu.sait.ca">norvillie.villaruel@edu.sait.ca</a></p>
+      </footer>
     </div>
   );
 }
